@@ -47,14 +47,14 @@ const PokemonCards = ({ pokemon, isLoading }) => {
         </Flex> : null
       }
       <SimpleGrid columns={3} padding={20} spacing={10}>
-        {
+        { pokemon &&
           pokemon?.map((p => {
             const { data } = p;
-            const isOnTeam = team.some((t) => t.id === data.id);
+            const isOnTeam = team?.some((t) => t?.id === data?.id);
             return (
               <Box maxW="500px" borderWidth="1px" borderRadius="lg" overflow="hidden">
                 <Button colorScheme={isOnTeam ? "green" : teamIsFull ? "blue" : "yellow"} disabled={isOnTeam || teamIsFull } onClick={() => storeStorage("pokemon_data", data)}>
-                    {isOnTeam ? "Already Added" : teamIsFull ? "Team Full" : "Add To Team"}
+                    {isOnTeam ? "Already In Team" : teamIsFull ? "Team Full" : "Add To Team"}
                 </Button>
                 <Image height={150} align="center" marginX="auto" src={data.sprites.front_default} alt="" />
                 <Box
@@ -134,8 +134,7 @@ const PokemonCards = ({ pokemon, isLoading }) => {
               </Box>
             )
           }))}
-          </SimpleGrid>
-      
+      </SimpleGrid>
     </>
   )
 }

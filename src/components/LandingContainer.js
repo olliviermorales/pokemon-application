@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from "@chakra-ui/react";
 import PokemonCards from "./PokemonCards";
+import Pagination from "./Pagination";
 import axios from 'axios';
 
 const LandingContainer = () => {
@@ -40,6 +41,7 @@ const LandingContainer = () => {
   return (
     <Container maxW="container.xl" paddingY={20}>
       <PokemonCards isLoading={loading} pokemon={pokemonData}/>
+      <Pagination isLoading={loading} goToNextPage={nextPageUrl ? goToNextPage : null} goToPrevPage={prevPageUrl ? goToPrevPage : null} />
     </Container>
   )
 }
