@@ -24,19 +24,17 @@ const PokemonCards = ({ pokemon, isLoading }) => {
   return (
     <>
       <Text align="center" marginTop="10" fontSize="6xl">Choose Your Pokemon</Text>
-      {
-        isLoading ?
+      { isLoading ?
         <Flex align="center" justify="center">
           <Spinner
-            thickness="4px"
+            thickness="10px"
             speed="0.65s"
             emptyColor="gray.200"
-            color="blue.500"
+            color="red.500"
             size="xl"
           />
-        </Flex> : null
-      }
-      <SimpleGrid columns={pokemon?.length > 0 ? 3 : 1} padding={20} spacing={10}>
+        </Flex> : 
+        <SimpleGrid columns={pokemon?.length > 0 ? 3 : 1} padding={20} spacing={10}>
         { pokemon?.length > 0 ?
           pokemon?.map((p => {
             const { data } = p;
@@ -95,7 +93,6 @@ const PokemonCards = ({ pokemon, isLoading }) => {
                       }
                     </VStack>
                   </Box>
-    
                   <Box
                     my="2"
                     fontWeight="semibold"
@@ -123,8 +120,10 @@ const PokemonCards = ({ pokemon, isLoading }) => {
                 </Box>
               </Box>
             )
-          })) : <Text align="center" fontSize="4xl" fontWeight="light">No Pokemon Found</Text>}
-      </SimpleGrid>
+        })) : <Text align="center" fontSize="4xl" fontWeight="light">No Pokemon Found</Text>}
+        </SimpleGrid>
+      }
+      
     </>
   )
 }
