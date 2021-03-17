@@ -14,9 +14,9 @@ const MyTeamContainer = () => {
     localStorage.setItem(name, JSON.stringify(newTeam));
     const pokeName = value.name.toUpperCase();
     toast({
-      title: "Pokemon added.",
-      description: `${pokeName} was successfully added to your team!`,
-      status: "success",
+      title: "Pokemon Removed.",
+      description: `${pokeName} was successfully removed from your team!`,
+      status: "warning",
       duration: 9000,
       isClosable: true,
       position: "top-right"

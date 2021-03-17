@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useToast, List, ListItem, Box, Button, Image, Stack, Badge, VStack, SimpleGrid, Flex, Spinner, HStack, Text, Input} from '@chakra-ui/react';
+import { useToast, List, ListItem, Box, Button, Image, Stack, Badge, VStack, SimpleGrid, Flex, Spinner, Text} from '@chakra-ui/react';
 import { StarIcon } from "@chakra-ui/icons";
+import Search from './Search';
 
 const getStorage = (name = '') => JSON.parse(localStorage.getItem(name));
 
@@ -22,17 +23,10 @@ const PokemonCards = ({ pokemon, isLoading }) => {
       position: "top-right"
     })
   }
-
+  console.log(pokemon)
   return (
     <>
-      <HStack
-        align="center"
-        marginX="auto"
-        justify="center"
-      >
-        <Text fontSize="2xl">Search:</Text>
-        <Input textColor='black' bg="white.500" w="300px" placeholder="Search for Pokemon" />
-      </HStack>
+      <Search />
       <Text align="center" marginTop="10" fontSize="6xl">Choose Your Pokemon</Text>
       {
         isLoading ?

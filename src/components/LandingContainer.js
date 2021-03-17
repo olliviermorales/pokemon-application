@@ -32,7 +32,7 @@ const LandingContainer = () => {
     async function fetchData() {
       const res = await axios.get(currentPageUrl);
       setNextPageUrl(res.data.next);
-      setPrevPageUrl(res.data.next);
+      setPrevPageUrl(res.data.previous);
       setLoading(false);
       await loadPokemon(res.data.results.map((p) => p.name));
     };
@@ -41,7 +41,10 @@ const LandingContainer = () => {
   return (
     <Container maxW="container.xl" paddingY={20}>
       <PokemonCards isLoading={loading} pokemon={pokemonData}/>
-      <Pagination isLoading={loading} goToNextPage={nextPageUrl ? goToNextPage : null} goToPrevPage={prevPageUrl ? goToPrevPage : null} />
+      <Pagination 
+        goToNextPage={nextPageUrl ? goToNextPage : null} 
+        goToPrevPage={prevPageUrl ? goToPrevPage : null} 
+      />
     </Container>
   )
 }
