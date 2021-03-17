@@ -1,11 +1,15 @@
 import React from 'react'
 import { SimpleGrid, Button } from "@chakra-ui/react";
 
-const Pagination = ({ goToNextPage, goToPrevPage }) => {
+const Pagination = ({ goToNextPage, goToPrevPage, pokemon }) => {
   return (
     <SimpleGrid columns={2} gap={4}>
-      { goToPrevPage && <Button colorScheme="red" onClick={goToPrevPage}>Previous</Button> }
-      { goToNextPage && <Button colorScheme="blue" onClick={goToNextPage}>Next</Button> }
+      { pokemon.length > 11 &&
+        <>
+          <Button disabled={goToPrevPage ? false : true } colorScheme="red" onClick={goToPrevPage}>Previous</Button>
+          <Button disabled={goToNextPage ? false : true} colorScheme="blue" onClick={goToNextPage}>Next</Button>
+        </>
+      }
     </SimpleGrid>
   )
 }

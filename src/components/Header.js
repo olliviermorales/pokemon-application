@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Menu, MenuItem, Text, Heading, Flex, Spacer } from "@chakra-ui/react";
+import { Heading, Flex, Spacer } from "@chakra-ui/react";
 
 const Header = () => {
   return (

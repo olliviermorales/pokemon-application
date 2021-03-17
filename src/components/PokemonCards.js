@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { useToast, List, ListItem, Box, Button, Image, Stack, Badge, VStack, SimpleGrid, Flex, Spinner, Text} from '@chakra-ui/react';
 import { StarIcon } from "@chakra-ui/icons";
-import Search from './Search';
-
 const getStorage = (name = '') => JSON.parse(localStorage.getItem(name));
 
 const PokemonCards = ({ pokemon, isLoading }) => {
   const toast = useToast();
   const [team, setTeam] = useState(getStorage('pokemon_data') || []);
   const teamIsFull = team.length >= 6;
-
   const storeStorage = (name = '', value = {}) => {
     setTeam(prev => [...prev, value]);
     localStorage.setItem(name, JSON.stringify([...team, value]));
@@ -23,10 +20,9 @@ const PokemonCards = ({ pokemon, isLoading }) => {
       position: "top-right"
     })
   }
-  console.log(pokemon)
+  
   return (
     <>
-      <Search />
       <Text align="center" marginTop="10" fontSize="6xl">Choose Your Pokemon</Text>
       {
         isLoading ?
@@ -40,8 +36,8 @@ const PokemonCards = ({ pokemon, isLoading }) => {
           />
         </Flex> : null
       }
-      <SimpleGrid columns={3} padding={20} spacing={10}>
-        { pokemon &&
+      <SimpleGrid columns={pokemon?.length > 0 ? 3 : 1} padding={20} spacing={10}>
+        { pokemon?.length > 0 ?
           pokemon?.map((p => {
             const { data } = p;
             const isOnTeam = team?.some((t) => t?.id === data?.id);
@@ -127,7 +123,7 @@ const PokemonCards = ({ pokemon, isLoading }) => {
                 </Box>
               </Box>
             )
-          }))}
+          })) : <Text align="center" fontSize="4xl" fontWeight="light">No Pokemon Found</Text>}
       </SimpleGrid>
     </>
   )

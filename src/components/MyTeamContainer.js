@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useToast, Container, List, ListItem, Box, Button, Image, Stack, Badge, VStack, SimpleGrid, HStack, Text, Input} from '@chakra-ui/react';
+import { useToast, Container, List, ListItem, Box, Button, Image, Stack, Badge, VStack, SimpleGrid, Text} from '@chakra-ui/react';
 import { StarIcon } from "@chakra-ui/icons";
 
 const getStorage = (name = '') => JSON.parse(localStorage.getItem(name));
@@ -7,7 +7,6 @@ const getStorage = (name = '') => JSON.parse(localStorage.getItem(name));
 const MyTeamContainer = () => {
   const toast = useToast();
   const [team, setTeam] = useState(getStorage('pokemon_data') || []);
-  console.log(team);
   const removeFromStorage = (name = '', value = {}) => {
     const newTeam = team.filter(p => p.id !== value.id)
     setTeam(newTeam);
